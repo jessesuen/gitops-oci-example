@@ -19,6 +19,3 @@ service:
 podAnnotations: {}
 
 resources: {}
-
-postSyncJob:
-  enabled: true
