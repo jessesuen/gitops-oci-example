@@ -32,5 +32,9 @@ jobs:
       - name: Push OCI Image
         run: |
           cd /tmp/rendered-manifests
-          oras push ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
+          oras push \
+            -a "org.opencontainers.image.version=${{ github.ref_name }}" \
+            -a "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
+            -a "org.opencontainers.image.description=GitOps OCI Example" \
+            ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
           oras tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} latest
