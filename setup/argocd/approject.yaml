@@ -1,0 +1,14 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: gitops-oci-example
+  namespace: argocd
+spec:
+  sourceRepos:
+  - '*'
+  destinations:
+  - namespace: gitops-oci-example
+    name: demo
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace

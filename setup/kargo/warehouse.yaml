@@ -1,0 +1,11 @@
+apiVersion: kargo.akuity.io/v1alpha1
+kind: Warehouse
+metadata:
+  name: oci-repo
+  namespace: gitops-oci-example
+spec:
+  subscriptions:
+  - image:
+      repoURL: ghcr.io/jessesuen/gitops-oci-example
+      imageSelectionStrategy: SemVer
+

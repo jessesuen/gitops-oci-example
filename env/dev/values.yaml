@@ -1,4 +1,5 @@
 podAnnotations:
   env: dev
+  foo: aaaa
 
 replicaCount: 1

@@ -2,6 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: gitops-oci-example
+  annotations:
+    kargo.akuity.io/authorized-stage: gitops-oci-example:dev
 spec:
   destination:
     namespace: gitops-oci-example
@@ -10,4 +12,5 @@ spec:
     path: dev
     repoURL: oci://ghcr.io/jessesuen/gitops-oci-example
     targetRevision: latest
+    #targetRevision: sha256:27e1eeb7dc3aafe540476d1580e6162ac02c9f66f9b9b6f8c39105dbebf24481
   project: gitops-oci-example
