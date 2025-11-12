@@ -1,0 +1,35 @@
+name: Release
+
+on:
+  release:
+    types: 
+    - published
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+    steps:
+      - uses: actions/checkout@v5
+      - name: Setup Helm
+        uses: azure/setup-helm@v4.3.1
+        with:
+          version: v3.19.0
+      - name: Setup Oras
+        uses: oras-project/setup-oras@v1.2.4
+        with:
+          version: 1.3.0
+      - name: Helm Template
+        run: |
+          for env in $(ls env); do
+            mkdir -p /tmp/rendered-manifests/${env}
+            helm template charts/guestbook -f env/${env}/values.yaml > /tmp/rendered-manifests/${env}/manifests.yaml
+          done
+      - name: Log in to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | oras login ghcr.io -u ${{ github.actor }} --password-stdin
+      - name: Push OCI Image
+        run: |
+          cd /tmp/rendered-manifests
+          oras push ghcr.io/${{ github.repository }}:${{ github.ref_name }} .

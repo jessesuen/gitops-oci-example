@@ -1,0 +1,4 @@
+podAnnotations:
+  env: prod
+
+replicaCount: 1

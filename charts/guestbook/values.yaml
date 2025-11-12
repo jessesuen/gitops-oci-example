@@ -1,0 +1,24 @@
+namespace: gitops-oci-example
+
+image:
+  repository: ghcr.io/jessesuen/guestbook
+  pullPolicy: IfNotPresent
+  tag: latest
+
+replicaCount: 1
+
+imagePullSecrets: []
+
+featureFlags: {}
+  # FEATURE_FOO: enabled
+
+service:
+  type: ClusterIP
+  port: 80
+
+podAnnotations: {}
+
+resources: {}
+
+postSyncJob:
+  enabled: true

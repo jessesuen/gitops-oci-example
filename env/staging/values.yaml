@@ -1,0 +1,4 @@
+podAnnotations:
+  env: staging
+
+replicaCount: 2

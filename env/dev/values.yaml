@@ -1,0 +1,4 @@
+podAnnotations:
+  env: dev
+
+replicaCount: 1
