@@ -9,5 +9,5 @@ spec:
   source:
     path: dev
     repoURL: oci://ghcr.io/jessesuen/gitops-oci-example
-    targetRevision: v0.0.1
+    targetRevision: latest
   project: gitops-oci-example

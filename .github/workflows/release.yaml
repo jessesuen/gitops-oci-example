@@ -33,3 +33,4 @@ jobs:
         run: |
           cd /tmp/rendered-manifests
           oras push ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
+          oras tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} latest
