@@ -33,8 +33,8 @@ jobs:
         run: |
           cd /tmp/rendered-manifests
           oras push \
-            -a "org.opencontainers.image.version=${{ github.ref_name }}" \
+            -a "org.opencontainers.image.version=${{ github.event.release.tag_name }}" \
             -a "org.opencontainers.image.source=https://github.com/${{ github.repository }}" \
             -a "org.opencontainers.image.description=GitOps OCI Example" \
-            ghcr.io/${{ github.repository }}:${{ github.ref_name }} .
-          oras tag ghcr.io/${{ github.repository }}:${{ github.ref_name }} latest
+            ghcr.io/${{ github.repository }}:${{ github.event.release.tag_name }} .
+          oras tag ghcr.io/${{ github.repository }}:${{ github.event.release.tag_name }} latest
